@@ -1,0 +1,13 @@
+1) container or smart components - data can be fectched inside the component itself
+2) presentational or dumb components - which depends on the parent always
+
+Container 
+    //Data fetch
+     mobile presentational component - data
+     desktop presentational component - data
+
+
+
+Commponent - Desktop and Mobile
+
+Contine

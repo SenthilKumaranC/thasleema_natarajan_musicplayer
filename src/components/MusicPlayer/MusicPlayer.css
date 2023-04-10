@@ -1,0 +1,8 @@
+.MusicPlayer{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: grid;
+    grid-template-rows: 10%  1fr  15%;
+    overflow: hidden;
+}
