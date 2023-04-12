@@ -9,7 +9,8 @@ const MusicControls = (props: any) => {
     currentId,
     setCurrentId,
   } = props;
-
+  
+  //Trigger Automatically and No 
   const songMp3Path = useMemo(() => {
     const songData = playlist.find((song: ISong) => song.id === currentId);
     if (songData) {
@@ -69,8 +70,8 @@ const MusicControls = (props: any) => {
         ></audio>
       )}
       <button>Prev</button>
-      {ps === "play" && <button onClick={playSong}>pause</button>}
-      {ps === "pause" && <button onClick={pauseSong}>play</button>}
+      {ps === "play" && <button onClick={pauseSong}>pause</button>}
+      {ps === "pause" && <button onClick={playSong}>play</button>}
       <button>Next</button>
     </div>
   );

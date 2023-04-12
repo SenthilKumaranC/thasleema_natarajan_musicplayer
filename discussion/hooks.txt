@@ -1,0 +1,16 @@
+Trigger Automatically but no async operation , we cannot use setFunction and can derive data - useMemo
+Trigger Automatically can do async operation - useEffect
+Trigger Manually can do async operation - useCallback
+
+
+useEffect(()=>{
+   //setAge((prevAge)=>prevAge+1)
+   //use it
+   if(age>18){
+    console.log
+   }
+},[age])
+
+
+useState - store data , use set function to modify the data , render trigger
+useRef - store data and no set function, directly modify the data using "current" key , no render
