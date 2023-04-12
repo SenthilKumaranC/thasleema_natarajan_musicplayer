@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, createContext, useMemo } from "react";
 import Body from "../Body/Body";
 import Header from "../Header/Header";
 import MusicControls from "../MusicControls/MusicControls";
 import { ISong } from "../PlayList/PlayList";
 import "./MusicPlayer.css";
+
+export const ThemeContext = createContext<any>({
+  buttonColor: "#ff0000",
+});
+
+export const MusicPlayerContext = createContext<any>({
+  playlist: [],
+  setPlaylist: (data: any) => {},
+  currentId: [],
+  setCurrentId: (data: any) => {},
+  playingStatus: [],
+  setPlayingStatus: (data: any) => {},
+});
 
 const MusicPlayer = () => {
 
@@ -11,12 +24,31 @@ const MusicPlayer = () => {
   const [currentId, setCurrentId] = useState<number>(-1);
   const [playingStatus, setPlayingStatus] = useState<string>("pause");
 
+  const ui = useMemo(() => {
+    return (
+      <>
+        <Header></Header>
+        <Body></Body>
+        <MusicControls></MusicControls>
+      </>
+    );
+  }, []);
+
   return (
-    <div className="MusicPlayer">
-      <Header></Header>
-      <Body playlist={playlist} currentId={currentId} setPlayingStatus={setPlayingStatus} playingStatus={playingStatus} setPlaylist={setPlaylist} setCurrentId={setCurrentId}></Body>
-      <MusicControls setPlayingStatus={setPlayingStatus}  playingStatus={playingStatus} setCurrentId={setCurrentId} currentId={currentId} playlist={playlist}></MusicControls>
-    </div>
+    <ThemeContext.Provider value={{ buttonColor: "#00ff00" }}>
+      <MusicPlayerContext.Provider
+        value={{
+          playlist,
+          setPlaylist,
+          currentId,
+          setCurrentId,
+          playingStatus,
+          setPlayingStatus,
+        }}
+      >
+        <div className="MusicPlayer">{ui}</div>
+      </MusicPlayerContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 

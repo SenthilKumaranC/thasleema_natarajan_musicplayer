@@ -1,14 +1,19 @@
+import { useContext } from "react";
+import { ThemeContext } from "../MusicPlayer/MusicPlayer";
 import PlayList from "../PlayList/PlayList";
-import "./Body.css"
+import "./Body.css";
 
-const Body = (props:any) => {
-    const {setPlaylist,playlist,setCurrentId, playingStatus,currentId, setPlayingStatus} = props;
+const Body = () => {
+  const { buttonColor } = useContext(ThemeContext);
 
-    return (
-        <div className="Body">
-            <PlayList playlist={playlist} currentId={currentId} playingStatus={playingStatus} setPlayingStatus={setPlayingStatus} setPlaylist={setPlaylist}  setCurrentId={setCurrentId}></PlayList>
-        </div>
-    )
-}
+  return (
+    <div className="Body">
+      <button style={{ backgroundColor: buttonColor }}>Some Button</button>
+      <ThemeContext.Provider value={{ buttonColor: "#0000ff" }}>
+        <PlayList></PlayList>
+      </ThemeContext.Provider>
+    </div>
+  );
+};
 
 export default Body;

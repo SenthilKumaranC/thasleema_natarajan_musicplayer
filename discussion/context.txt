@@ -1,0 +1,4 @@
+1) plan for the tower contruction - createContext
+2) contruct the tower - <ContextName.Provider ></ContextName.Provider>
+3) Senthil - Sender -  <ContextName.Provider value={data}></ContextName.Provider>
+4) Natarajan - Receiver - const data = useContext(ContextName)

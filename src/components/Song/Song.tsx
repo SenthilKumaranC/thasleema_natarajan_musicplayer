@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { MusicPlayerContext } from "../MusicPlayer/MusicPlayer";
 
 //similar data like border radius - inside component
 //differences like backgroundcolor - thru props
@@ -11,7 +12,9 @@ const CustomButton = (props:any)=>{
 
 const Song = (props: any) => {
   const imageRelativePath = "assets/images/";
-  const { id, songTitle, coverPhoto,playingStatus,currentId ,setCurrentId,setPlayingStatus} = props;
+  const { id, songTitle, coverPhoto} = props;
+
+  const { playingStatus,currentId ,setCurrentId,setPlayingStatus} = useContext(MusicPlayerContext);
  
   const playSong = useCallback(()=>{
     setCurrentId(id)

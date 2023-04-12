@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { MusicPlayerContext, ThemeContext } from "../MusicPlayer/MusicPlayer";
 import Song from "../Song/Song";
 import "./PlayList.css";
 
@@ -8,15 +9,13 @@ export interface ISong {
   songPath: string;
   coverPhoto: string;
 }
-const PlayList = (props: any) => {
+const PlayList = () => {
   const {
     setPlaylist,
     playlist,
-    playingStatus,
-    currentId,
-    setCurrentId,
-    setPlayingStatus,
-  } = props;
+  } = useContext(MusicPlayerContext);
+
+  const {buttonColor} = useContext(ThemeContext);
 
   const [serverError,setServerError] = useState(false);
 
@@ -38,16 +37,13 @@ const PlayList = (props: any) => {
 
   return (
     <div className="PlayList">
+      <button style={{backgroundColor:buttonColor}}>Shuffle Songs</button>
       {serverError && <span style={{fontSize:"30px",color:"red",backgroundColor:"white"}}>Please Start Server</span>}
       {playlist?.map((song: ISong) => {
         return (
           <Song
             key={song.id}
             {...song}
-            currentId={currentId}
-            setCurrentId={setCurrentId}
-            playingStatus={playingStatus}
-            setPlayingStatus={setPlayingStatus}
           ></Song>
         );
       })}

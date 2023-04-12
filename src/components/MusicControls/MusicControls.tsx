@@ -1,14 +1,16 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef } from "react";
+import { MusicPlayerContext } from "../MusicPlayer/MusicPlayer";
 import { ISong } from "../PlayList/PlayList";
 import "./MusicControls.css";
-const MusicControls = (props: any) => {
+const MusicControls = () => {
+  
   const {
     playlist,
     playingStatus: ps,
     setPlayingStatus: sps,
     currentId,
     setCurrentId,
-  } = props;
+  } = useContext(MusicPlayerContext);
   
   //Trigger Automatically and No 
   const songMp3Path = useMemo(() => {
