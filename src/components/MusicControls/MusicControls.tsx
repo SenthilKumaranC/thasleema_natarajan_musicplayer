@@ -3,16 +3,11 @@ import { MusicPlayerContext } from "../MusicPlayer/MusicPlayer";
 import { ISong } from "../PlayList/PlayList";
 import "./MusicControls.css";
 const MusicControls = () => {
-  
-  const {
-    playlist,
-    playingStatus: ps,
-    setPlayingStatus: sps,
-    currentId,
-    setCurrentId,
-  } = useContext(MusicPlayerContext);
-  
-  //Trigger Automatically and No 
+  const { state, dispatch } = useContext(MusicPlayerContext);
+
+  const { playlist, currentId, playingStatus: ps } = state;
+
+  //Trigger Automatically and No
   const songMp3Path = useMemo(() => {
     const songData = playlist.find((song: ISong) => song.id === currentId);
     if (songData) {
@@ -27,21 +22,12 @@ const MusicControls = () => {
   const songRelativePath = "assets/music/";
 
   const playSong = useCallback(() => {
-    if (currentId === -1) {
-      if (playlist.length > 0) {
-        const selectedSongId = playlist[0].id;
-        setCurrentId(selectedSongId);
-      }
-    }
-    sps("play");
-  }, [currentId, playlist, setCurrentId, sps]);
+    dispatch({ type: "play" });
+  }, [dispatch]);
 
-  const pauseSong = useCallback(
-    () => {
-      sps("pause");
-    },
-    [sps]
-  );
+  const pauseSong = useCallback(() => {
+    dispatch({ type: "pause" });
+  }, [dispatch]);
 
   const audioElement = useRef<any>();
 

@@ -1,0 +1,13 @@
+useState - store data , use set function to modify the data , render trigger
+useRef - store data and no set function, directly modify the data using "current" key , no render
+useReducer - store complex data
+
+var1 =0; 5 action
+var2 ="dfdf; 3 action
+
+
+
+1) interface
+2) InitialState
+3) Reducer - handle all actions
+4) Connect reducer and InitialState using useREducer hook
